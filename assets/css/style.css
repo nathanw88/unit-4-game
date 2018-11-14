@@ -77,7 +77,7 @@ p {
 #kenobi-enemy-hp,
 #maul-enemy-hp,
 #sidious-enemy-hp,
-#enemy-hp {
+.enemy-hp {
   position: relative;
   bottom: 20px;
   text-align: center;

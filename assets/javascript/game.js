@@ -16,10 +16,11 @@ $("#maul-enemy-choosen").hide();
 $("#luke-enemy-choosen").hide();
 
 var playerAP = 0;
+var PlayerHP = 0;
 //player attack power
 var currentEnemyHP = 0;
 // choosen enemy hp
-var currentEnemycounterAP = 0;
+var currentEnemyCounterAP = 0;
 // choosen enemy counter attack power
 var enemyChoosen = false;
 // enemy choose start as false
@@ -27,6 +28,7 @@ var playerChoosen = false;
 
 var player = "";
 var currentEnemy = "";
+var counter = 0;
 
 // step 2
 
@@ -59,29 +61,52 @@ var game = {
   //make objects filled with info for each character
   attacking: function() {
     //create function for attacking
-
-    // deal damage to selected enemy
-    currentEnemyHP -= playerAP;
-    playerAP += playerStartAP;
-
-    //check if choosen enemies health is equal to or below zero
-    if (currentEnemyHP <= 0) {
-      // if so hide enemy, change enemy choosen as false
-      $("#" + currentEnemy + "-enemy-choosen").hide();
-      enemyChoosen = false;
-    } else {
-      // deal damage to players health
-      PlayerHP -= currentEnemycounterAP;
-      // check if player health is at or below 0
-      if (PlayerHP <= 0) {
-        // if not alert loss
-        alert("You lost this time!");
-        //reveal restart button
-        $("#restart").show();
+    if (enemyChoosen) {
+      // deal damage to selected enemy
+      currentEnemyHP -= playerAP;
+      console.log(currentEnemyHP);
+      //check if choosen enemies health is equal to or below zero
+      if (currentEnemyHP <= 0) {
+        // if so hide enemy, change enemy choosen as false
+        $("#results").text(
+          player + "dealt: " + playerAP + " damage to " + currentEnemy
+        );
+        $(".enemy-choosen").hide();
+        enemyChoosen = false;
+        counter++;
+        if (counter === 3) {
+          alert("You win.");
+          $("#restart").show();
+        }
       } else {
-        // add starting attack power to current attack power
-        $(".hero-hp").text = PlayerHP;
-        // print to screen updated health
+        // deal damage to players health
+        playerHP -= currentEnemyCounterAP;
+        console.log(playerHP);
+        $("#results").html(
+          player +
+            "dealt: " +
+            playerAP +
+            " damage to " +
+            currentEnemy +
+            ".<br>" +
+            currentEnemy +
+            "dealt: " +
+            currentEnemyCounterAP +
+            " damage to " +
+            player
+        );
+        // check if player health is at or below 0
+        if (playerHP <= 0) {
+          // if not alert loss
+          alert("You lost this time!");
+          //reveal restart button
+          $("#restart").show();
+        } else {
+          playerAP += playerStartAP;
+          $(".enemy-hp").text(currentEnemyHP);
+          $(".hero-hp").text(playerHP);
+          // print to screen updated health
+        }
       }
     }
   }
@@ -101,7 +126,7 @@ $(".heros").on("click", function(event) {
       case "luke":
         playerAP = game.luke.attackPower;
         playerStartAP = game.luke.attackPower;
-        PlayerHP = game.luke.hp;
+        playerHP = game.luke.hp;
         $("#kenobi").hide();
         $("#maul").hide();
         $("#sidious").hide();
@@ -114,7 +139,7 @@ $(".heros").on("click", function(event) {
       case "kenobi":
         playerAP = game.kenobi.attackPower;
         playerStartAP = game.kenobi.attackPower;
-        PlayerHP = game.kenobi.hp;
+        playerHP = game.kenobi.hp;
         $("#luke").hide();
         $("#maul").hide();
         $("#sidious").hide();
@@ -127,7 +152,7 @@ $(".heros").on("click", function(event) {
       case "sidious":
         playerAP = game.sidious.attackPower;
         playerStartAP = game.sidious.attackPower;
-        PlayerHP = game.sidious.hp;
+        playerHP = game.sidious.hp;
         $("#kenobi").hide();
         $("#maul").hide();
         $("#luke").hide();
@@ -140,7 +165,7 @@ $(".heros").on("click", function(event) {
       case "maul":
         playerAP = game.maul.attackPower;
         playerStartAP = game.maul.attackPower;
-        PlayerHP = game.maul.hp;
+        playerHP = game.maul.hp;
         $("#kenobi").hide();
         $("#luke").hide();
         $("#sidious").hide();
@@ -152,7 +177,7 @@ $(".heros").on("click", function(event) {
     }
   }
   console.log(playerAP);
-  console.log(PlayerHP);
+  console.log(playerHP);
 
   //hide characters not choosen
   // reveal characters not choosen as enemies
@@ -173,25 +198,29 @@ $(".enemies").on("click", function(event) {
         $("#luke-enemy").hide();
         $("#luke-enemy-choosen").show();
         currentEnemyHP = game.luke.hp;
-        currentEnemycounterAP = game.luke.counterAP;
+        currentEnemyCounterAP = game.luke.counterAP;
+        $(".enemy-hp").text(currentEnemyHP);
         break;
       case "maul-enemy":
         $("#maul-enemy").hide();
         $("#maul-enemy-choosen").show();
         currentEnemyHP = game.maul.hp;
-        currentEnemycounterAP = game.maul.counterAP;
+        currentEnemyCounterAP = game.maul.counterAP;
+        $(".enemy-hp").text(currentEnemyHP);
         break;
       case "sidious-enemy":
         $("#sidious-enemy").hide();
         $("#sidious-enemy-choosen").show();
         currentEnemyHP = game.sidious.hp;
-        currentEnemycounterAP = game.sidious.counterAP;
+        currentEnemyCounterAP = game.sidious.counterAP;
+        $(".enemy-hp").text(currentEnemyHP);
         break;
       case "kenobi-enemy":
         $("#kenobi-enemy").hide();
         $("#kenobi-enemy-choosen").show();
         currentEnemyHP = game.kenobi.hp;
-        currentEnemycounterAP = game.kenobi.counterAP;
+        currentEnemyCounterAP = game.kenobi.counterAP;
+        $(".enemy-hp").text(currentEnemyHP);
         break;
     }
 
@@ -211,10 +240,10 @@ $("#attack").on("click", function(event) {
 $("#restart").on("click", function(event) {
   // make on click for restart button
   playerAP = 0;
-
+  playerHP = 0;
   currentEnemyHP = 0;
-
-  currentEnemycounterAP = 0;
+  counter = 0;
+  currentEnemyCounterAP = 0;
 
   enemyChoosen = false;
 
@@ -223,6 +252,10 @@ $("#restart").on("click", function(event) {
   player = "";
   currentEnemy = "";
   // reset all values
+  $("#luke-hp").text(game.luke.hp);
+  $("#maul-hp").text(game.maul.hp);
+  $("#kenobi-hp").text(game.kenobi.hp);
+  $("#sidious-hp").text(game.sidious.hp);
   $("#kenobi-enemy").hide();
   $("#sidious-enemy").hide();
   $("#maul-enemy").hide();
