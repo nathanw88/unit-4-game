@@ -34,6 +34,7 @@ var counter = 0;
 
 var game = {
   //create an object
+  //make objects filled with info for each character
   luke: {
     hp: 125,
     attackPower: 10,
@@ -58,30 +59,34 @@ var game = {
     counterAP: 20
   },
 
-  //make objects filled with info for each character
   attacking: function() {
     //create function for attacking
     if (enemyChoosen) {
       // deal damage to selected enemy
       currentEnemyHP -= playerAP;
-      console.log(currentEnemyHP);
+      // console.log(currentEnemyHP);
       //check if choosen enemies health is equal to or below zero
       if (currentEnemyHP <= 0) {
         // if so hide enemy, change enemy choosen as false
         $("#results").text(
+          // print damage done to killed enemy
           player + "dealt: " + playerAP + " damage to " + currentEnemy
         );
         $(".enemy-choosen").hide();
         enemyChoosen = false;
+        // increment counter  of kills
         counter++;
+        //check if all 3 enemies have been killed
         if (counter === 3) {
           alert("You win.");
+          // reveal restart button
           $("#restart").show();
         }
       } else {
         // deal damage to players health
         playerHP -= currentEnemyCounterAP;
-        console.log(playerHP);
+        // console.log(playerHP);
+        // print damage done to enemy, and damage done to player
         $("#results").html(
           player +
             "dealt: " +
@@ -102,10 +107,11 @@ var game = {
           //reveal restart button
           $("#restart").show();
         } else {
+          // add players starting attacking power to current attack power
           playerAP += playerStartAP;
+          //print to screen curren health of  enemy and player
           $(".enemy-hp").text(currentEnemyHP);
           $(".hero-hp").text(playerHP);
-          // print to screen updated health
         }
       }
     }
@@ -115,13 +121,17 @@ var game = {
 
 //make on click for players choice
 $(".heros").on("click", function(event) {
-  console.log(this.id);
+  // console.log(this.id);
 
-  //set player attributes
   if (!playerChoosen) {
+    //set player has been choosen to true
     playerChoosen = true;
+    //set player to the hero choosen
     player = this.id;
-    console.log(player);
+    // console.log(player);
+    // set player attribute
+    //hide characters not choosen
+    // reveal characters not choosen as enemies
     switch (player) {
       case "luke":
         playerAP = game.luke.attackPower;
@@ -178,46 +188,57 @@ $(".heros").on("click", function(event) {
   }
   console.log(playerAP);
   console.log(playerHP);
-
-  //hide characters not choosen
-  // reveal characters not choosen as enemies
 });
 
 // step 4
 $(".enemies").on("click", function(event) {
   // make on click for chosen enemy to fight
 
-  //checks if enemyChoosen is false if so otherwhise ignore click
+  //checks if enemyChoosen is false if so moves enemy down to defender otherwhise ignore click
   if (!enemyChoosen) {
+    //sets enemy choosen to true
     enemyChoosen = true;
-    console.log(this.id);
-    //hide choosen enemy
+    // console.log(this.id);
+
+    //finds out who was picked
     currentEnemy = this.id;
     switch (currentEnemy) {
       case "luke-enemy":
+        //hide choosen enemy
+        //reveal choosen enemy as a defender
         $("#luke-enemy").hide();
         $("#luke-enemy-choosen").show();
+        //set current enemy attribute
         currentEnemyHP = game.luke.hp;
         currentEnemyCounterAP = game.luke.counterAP;
         $(".enemy-hp").text(currentEnemyHP);
         break;
       case "maul-enemy":
+        //hide choosen enemy
+        //reveal choosen enemy as a defender
         $("#maul-enemy").hide();
         $("#maul-enemy-choosen").show();
+        //set current enemy attribute
         currentEnemyHP = game.maul.hp;
         currentEnemyCounterAP = game.maul.counterAP;
         $(".enemy-hp").text(currentEnemyHP);
         break;
       case "sidious-enemy":
+        //hide choosen enemy
+        //reveal choosen enemy as a defender
         $("#sidious-enemy").hide();
         $("#sidious-enemy-choosen").show();
+        //set current enemy attribute
         currentEnemyHP = game.sidious.hp;
         currentEnemyCounterAP = game.sidious.counterAP;
         $(".enemy-hp").text(currentEnemyHP);
         break;
       case "kenobi-enemy":
+        //hide choosen enemy
+        //reveal choosen enemy as a defender
         $("#kenobi-enemy").hide();
         $("#kenobi-enemy-choosen").show();
+        //set current enemy attribute
         currentEnemyHP = game.kenobi.hp;
         currentEnemyCounterAP = game.kenobi.counterAP;
         $(".enemy-hp").text(currentEnemyHP);
@@ -229,16 +250,16 @@ $(".enemies").on("click", function(event) {
   }
 });
 //step 5
+//make on click for attack button
 $("#attack").on("click", function(event) {
+  //call attacking function
   game.attacking();
 });
-//make on click for attack button
-
-// call attack function
 
 //step6
 $("#restart").on("click", function(event) {
   // make on click for restart button
+  // reset all values
   playerAP = 0;
   playerHP = 0;
   currentEnemyHP = 0;
@@ -251,7 +272,9 @@ $("#restart").on("click", function(event) {
 
   player = "";
   currentEnemy = "";
-  // reset all values
+
+  //reset all elements back to orginal hidden value or shown value
+
   $("#luke-hp").text(game.luke.hp);
   $("#maul-hp").text(game.maul.hp);
   $("#kenobi-hp").text(game.kenobi.hp);
@@ -269,6 +292,4 @@ $("#restart").on("click", function(event) {
   $("#sidious").show();
   $("#maul").show();
   $("#luke").show();
-
-  //change all display to none
 });
