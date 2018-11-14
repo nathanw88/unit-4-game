@@ -54,7 +54,7 @@ p {
   clear: both;
 }
 
-#restart,
+/* #restart,
 #sidious-enemy,
 #sidious-enemy-choosen,
 #luke-enemy,
@@ -64,7 +64,7 @@ p {
 #maul-enemy,
 #maul-enemy-choosen {
   display: none;
-}
+} */
 
 .name {
   position: relative;
