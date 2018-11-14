@@ -1,0 +1,84 @@
+body {
+  background-image: url(../images/1920x1093-2609308-star-wars-wallpaper-for-desktop-computer.jpg);
+  color: white;
+}
+
+.main-container {
+  width: 95%;
+  height: auto;
+  margin: auto;
+}
+
+#enemies,
+#enemy-choosen {
+  clear: both;
+}
+
+.heros,
+.enemies {
+  color: black;
+}
+
+.hero-img {
+  border-color: green;
+  background: white;
+}
+
+.enemy-img {
+  border-color: black;
+  background: red;
+}
+
+.enemy-choosen-img {
+  border-color: green;
+  background: black;
+}
+
+.heros,
+.enemies,
+.enemy-choosen {
+  float: left;
+}
+
+img {
+  width: 200px;
+  height: 250px;
+  padding: 25px;
+  border: 2px solid;
+}
+
+h1,
+section,
+button,
+p {
+  clear: both;
+}
+
+#restart,
+#sidious-enemy,
+#sidious-enemy-choosen,
+#luke-enemy,
+#luke-enemy-choosen,
+#kenobi-enemy,
+#kenobi-enemy-choosen,
+#maul-enemy,
+#maul-enemy-choosen {
+  display: none;
+}
+
+.name {
+  position: relative;
+  top: 20px;
+  text-align: center;
+}
+
+.hero-hp,
+#luke-enemy-hp,
+#kenobi-enemy-hp,
+#maul-enemy-hp,
+#sidious-enemy-hp,
+#enemy-hp {
+  position: relative;
+  bottom: 20px;
+  text-align: center;
+}

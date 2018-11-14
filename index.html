@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/style.css"
+    />
+    <script src="assets/javascript/game.js"></script>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <div id="player-choice">
+        <div class="heros" id="luke">
+          <p class="name">Luke Skywalker</p>
+          <img class="hero-img" src="assets/images/luke.jpg" alt="Luke" />
+          <p class="hero-hp"></p>
+        </div>
+        <div class="heros" id="kenobi">
+          <p class="name">Obi-Wan Kenobi</p>
+          <img class="hero-img" src="assets/images/kenobi.jpg" alt="Kenobi" />
+          <p class="hero-hp"></p>
+        </div>
+        <div class="heros" id="maul">
+          <p class="name">Darth Maul</p>
+          <img class="hero-img" src="assets/images/maul.jpg" alt="Maul" />
+          <p class="hero-hp"></p>
+        </div>
+        <div class="heros" id="sidious">
+          <p class="name">Darth Sidious</p>
+          <img class="hero-img" src="assets/images/sidious.jpg" alt="Sidious" />
+          <p class="hero-hp"></p>
+        </div>
+      </div>
+      <section><h1>Your Character!</h1></section>
+
+      <div id="enemies">
+        <div class="enemies" id="luke-enemy">
+          <p class="name">Luke Skywalker</p>
+          <img
+            class="enemy-img"
+            src="assets/images/luke.jpg"
+            alt="Luke-enemy"
+          />
+          <p id="luke-enemy-hp"></p>
+        </div>
+        <div class="enemies" id="kenobi-enemy">
+          <p class="name">Obi-Wan Kenobi</p>
+          <img
+            class="enemy-img"
+            src="assets/images/kenobi.jpg"
+            alt="Kenobi-enemy"
+          />
+          <p id="kenobi-enemy-hp"></p>
+        </div>
+        <div class="enemies" id="maul-enemy">
+          <p class="name">Darth Maul</p>
+          <img
+            class="enemy-img"
+            src="assets/images/maul.jpg"
+            alt="Maul-enemy"
+          />
+          <p id="maul-enemy-hp"></p>
+        </div>
+        <div class="enemies" id="sidious-enemy">
+          <p class="name">Darth Sidious</p>
+          <img
+            class="enemy-img"
+            src="assets/images/sidious.jpg"
+            alt="Sidious-enemy"
+          />
+          <p id="sidious-enemy-hp"></p>
+        </div>
+      </div>
+
+      <section>
+        <h1>Enemies to fight!</h1>
+        <h1>Fight Section</h1>
+        <button id="attack">Attack</button>
+        <h1>Defender</h1>
+      </section>
+
+      <div id="enemy-choosen">
+        <div class="enemy-choosen" id="luke-enemy-choosen">
+          <p class="name">Luke Skywalker</p>
+          <img
+            class="enemy-choosen-img"
+            src="assets/images/luke.jpg"
+            alt="Luke"
+          />
+          <p class="enemy-hp"></p>
+        </div>
+        <div class="enemy-choosen" id="kenobi-enemy-choosen">
+          <p class="name">Obi-Wan Kenobi</p>
+          <img
+            class="enemy-choosen-img"
+            src="assets/images/kenobi.jpg"
+            alt="Kenobi"
+          />
+          <p class="enemy-hp"></p>
+        </div>
+        <div class="enemy-choosen" id="maul-enemy-choosen">
+          <p class="name">Darth Maul</p>
+          <img
+            class="enemy-choosen-img"
+            src="assets/images/maul.jpg"
+            alt="Maul"
+          />
+          <p class="enemy-hp"></p>
+        </div>
+        <div class="enemy-choosen" id="sidious-enemy-choosen">
+          <p class="name">Darth Sidious</p>
+          <img
+            class="enemy-choosen-img"
+            src="assets/images/sidious.jpg"
+            alt="Sidious"
+          />
+          <p class="enemy-hp"></p>
+        </div>
+      </div>
+      <p id="results"></p>
+      <button id="restart">Restart!</button>
+    </div>
+  </body>
+</html>
